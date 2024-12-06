@@ -42,4 +42,4 @@ jobs:
         
     - name: Run full tests
       run: |
-        pytest test_model.py -v
+        pytest test_model.py -v 
