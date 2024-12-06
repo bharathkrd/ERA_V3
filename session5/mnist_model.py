@@ -107,7 +107,7 @@ def load_model():
 def main():
     model = train_model()
     
-    # Print parameter count
+    # Get parameter count
     num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f"\nModel Statistics:")
     print(f"Number of parameters: {num_params:,}")
@@ -131,6 +131,9 @@ def main():
     
     accuracy = 100. * correct / total
     print(f"Test accuracy: {accuracy:.2f}%")
+    
+    # Return values needed by test_accuracy
+    return num_params, accuracy  # Add this return statement
 
 if __name__ == "__main__":
     main() 
