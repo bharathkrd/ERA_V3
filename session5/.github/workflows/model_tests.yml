@@ -1,16 +1,27 @@
-name: Model Tests
+name: MNIST Model Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'session5/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'session5/**'
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+    defaults:
+      run:
+        working-directory: ./session5
+
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: '3.8'
         
@@ -19,6 +30,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install torch torchvision pytest
         
-    - name: Run tests
+    - name: Run model parameter test
       run: |
-        pytest test_model.py -v 
+        python -c "
+        from mnist_model import TinyMNIST
+        model = TinyMNIST()
+        params = sum(p.numel() for p in model.parameters())
+        assert params < 25000, f'Model has {params} parameters (must be < 25000)'
+        print(f'✓ Model has {params} parameters (< 25000)')
+        "
+        
+    - name: Run full tests
+      run: |
+        pytest test_model.py -v
