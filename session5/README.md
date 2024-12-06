@@ -1,5 +1,7 @@
 # 🎯 MNIST Classification: The Little Model That Could
 
+![MNIST](https://img.shields.io/github/actions/workflow/status/bharathkrd/ERA_V3/model_tests.yml?style=for-the-badge&logo=pytorch&logoColor=FF00FF&labelColor=000000&color=00FFFF&label=🤖%20NEURAL%20MAGIC)
+
 Welcome to our MNIST classifier, where we prove that size doesn't matter (in neural networks, at least 😉). This tiny but mighty model achieves >95% accuracy with fewer parameters than your average Twitter post!
 
 ## 🌟 What's Special About This Model?
